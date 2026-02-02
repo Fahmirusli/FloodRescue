@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_revert"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PROFILE"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnEditProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:textColor="@color/primary_blue"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/circle_bg"
+            android:padding="20dp"
+            android:layout_marginTop="30dp"
+            app:tint="@color/text_secondary" />
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
+            <TextView
+                android:id="@+id/tvProfileName"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_height="30dp"
+                android:layout_width="170dp"/>
+            <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/checkbox_on_background"
+                android:layout_marginStart="8dp"
+                app:tint="#3B82F6" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvProfileEmail"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:background="#1F2937"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:textColor="#6B7280" />
+
+        <TextView
+            android:text="CONTACT DETAILS"
+            android:textColor="#6B7280"
+            android:textSize="15sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="16dp"
+            android:layout_width="150dp"/>
+
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_dark_card" android:padding="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="16dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_call"
+                    app:tint="@color/primary_blue" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="16dp">
+                    <TextView
+                        android:text="MOBILE"
+                        android:textColor="#6B7280"
+                        android:textSize="13sp"
+                        android:layout_height="15dp"
+                        android:layout_width="80dp"/>
+                    <TextView
+                        android:text="+1 555-0123"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:layout_height="20dp"
+                        android:layout_width="110dp"/>
+                </LinearLayout>
+                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_media_play"
+                    android:rotation="180"
+                    app:tint="#4B5563" /> </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="16dp">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_dialog_email"
+                    app:tint="#A855F7" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="16dp">
+                    <TextView
+                        android:text="EMAIL"
+                        android:textColor="#6B7280"
+                        android:textSize="13sp"
+                        android:layout_height="15dp"
+                        android:layout_width="80dp"/>
+                    <TextView
+                        android:text="john.d@example.com"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:layout_height="20dp"
+                        android:layout_width="110dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_dialog_map"
+                    app:tint="#6366F1" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="16dp">
+                    <TextView
+                        android:text="ADDRESS"
+                        android:textColor="#6B7280"
+                        android:textSize="13sp"
+                        android:layout_height="15dp"
+                        android:layout_width="80dp"/>
+                    <TextView
+                        android:text="124 Main St, New York, NY"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:layout_height="20dp"
+                        android:layout_width="110dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:text="MEDICAL INFO"
+            android:textColor="#6B7280"
+            android:textSize="15sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="16dp"
+            android:layout_width="110dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/bg_dark_card" android:padding="16dp" android:orientation="vertical" android:layout_marginEnd="8dp">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_add"
+                    app:tint="#EF4444" />
+                <TextView
+                    android:text="BLOOD TYPE"
+                    android:textColor="#6B7280"
+                    android:textSize="13sp"
+                    android:layout_marginTop="14dp"
+                    android:layout_height="15dp"
+                    android:layout_width="142dp"/>
+                <TextView
+                    android:text="O+"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_height="20dp"
+                    android:layout_width="90dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/bg_dark_card" android:padding="16dp" android:orientation="vertical" android:layout_marginStart="8dp">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="#10B981" />
+                <TextView
+                    android:text="MOBILITY"
+                    android:textColor="#6B7280"
+                    android:textSize="13dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="15dp"
+                    android:layout_width="140dp"/>
+                <TextView
+                    android:text="Full"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_height="20dp"
+                    android:layout_width="140dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:text="EMERGENCY CONTACTS"
+                android:textColor="#6B7280"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="20dp"/>
+
+            <LinearLayout
+                android:id="@+id/btnAddEmergencyContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_chip_dark"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@android:drawable/ic_input_add" app:tint="@color/primary_blue"/>
+                <TextView android:text="Add" android:textColor="@color/primary_blue" android:textSize="12sp" android:textStyle="bold" android:layout_marginStart="4dp" android:layout_height="20dp" android:layout_width="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerEmergencyContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dark_card"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/circle_bg"
+                    android:padding="8dp"
+                    app:tint="#F472B6"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+                    <TextView android:text="Jane Doe" android:textColor="@color/white" android:textStyle="bold" android:textSize="16sp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                    <TextView android:text="● Wife • Next of Kin" android:textColor="#9CA3AF" android:textSize="12sp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@android:drawable/ic_menu_call"
+                    android:background="@drawable/bg_btn_blue"
+                    android:backgroundTint="#10B981"
+                    android:padding="8dp"
+                    app:tint="@color/white"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="My Reports History"
+            android:textAlignment="viewStart"
+            android:paddingStart="20dp"
+            android:background="@drawable/bg_dark_card"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:textAllCaps="false"
+            android:drawableEnd="@android:drawable/ic_media_play"
+            android:drawableTint="#6B7280"
+            android:paddingEnd="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Log Out"
+            android:textAlignment="viewStart"
+            android:paddingStart="20dp"
+            android:background="@drawable/bg_dark_card"
+            android:textColor="#EF4444"
+            android:layout_marginTop="12dp"
+            android:textAllCaps="false"
+            android:drawableEnd="@android:drawable/ic_lock_power_off"
+            android:drawableTint="#EF4444"
+            android:paddingEnd="20dp"/>
+
+        <TextView
+            android:text="Flood Rescue v2.4.1"
+            android:textColor="#374151"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="20dp"
+            android:layout_width="30dp"/>
+
+    </LinearLayout>
+</ScrollView>

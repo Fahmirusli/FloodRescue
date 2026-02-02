@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bottom_sheet_full"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/btnCloseSOS"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:tint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency Assistance"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/btnCancelSOS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="#9CA3AF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSendSOS"
+        app:layout_constraintTop_toBottomOf="@+id/btnCloseSOS"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#374151"
+                android:layout_marginBottom="24dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@android:drawable/ic_dialog_map"
+                    android:scaleType="centerCrop"
+                    app:tint="#6B7280"/>
+                <TextView
+                    android:text="GPS ACTIVE"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_rounded_blue"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_margin="12dp"
+                    android:layout_height="25dp"
+                    android:layout_width="90dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="bottom"
+                    android:background="#B3000000"
+                    android:padding="12dp">
+                    <TextView
+                        android:text="CURRENT LOCATION"
+                        android:textColor="#9CA3AF"
+                        android:textSize="10sp"
+                        android:layout_height="15dp"
+                        android:layout_width="110dp"/>
+                    <TextView
+                        android:text="Near 1234 Chartres St, New Orleans"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout android:orientation="horizontal" android:layout_marginBottom="12dp" android:layout_height="25dp" android:layout_width="match_parent">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_menu_mylocation" app:tint="@color/primary_blue"/>
+                <TextView
+                    android:text="Latitude"
+                    android:textColor="#9CA3AF"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"/>
+                <TextView
+                    android:id="@+id/tvSOSLat"
+                    android:text="29.9511 N"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_marginBottom="12dp" android:layout_height="25dp" android:layout_width="match_parent">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_menu_mylocation" app:tint="@color/primary_blue"/>
+                <TextView
+                    android:text="Longitude"
+                    android:textColor="#9CA3AF"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"/>
+                <TextView
+                    android:id="@+id/tvSOSLng"
+                    android:text="90.0715 W"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_marginBottom="24dp" android:layout_height="25dp" android:layout_width="match_parent">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_menu_recent_history" app:tint="@color/primary_blue"/>
+                <TextView
+                    android:text="Time"
+                    android:textColor="#9CA3AF"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"/>
+                <TextView
+                    android:id="@+id/tvSOSTime"
+                    android:text="14:32 PM"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout android:orientation="horizontal" android:layout_marginBottom="8dp" android:layout_height="wrap_content" android:layout_width="match_parent">
+                <TextView
+                    android:text="What is your emergency?"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"/>
+                <TextView
+                    android:text="Required"
+                    android:textColor="#D97706"
+                    android:background="#451a03"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:textSize="10sp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/etSOSDescription"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/bg_dark_card"
+                android:hint="Briefly describe your situation..."
+                android:textColorHint="#6B7280"
+                android:textColor="@color/white"
+                android:gravity="top"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp"
+                android:drawableEnd="@android:drawable/ic_btn_speak_now"
+                android:drawableTint="@color/primary_blue"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dark_card"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_share" app:tint="@color/primary_blue"/>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="16dp">
+                    <TextView
+                        android:text="Notify Emergency Contacts"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+                    <TextView
+                        android:text="Share location with family"
+                        android:textColor="#9CA3AF"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_disclaimer_card"
+                android:padding="12dp"
+                android:orientation="horizontal">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@android:drawable/ic_dialog_info" app:tint="#D97706"/>
+                <TextView
+                    android:text="By requesting help, you consent to share your medical profile with first responders if available."
+                    android:textColor="#D97706"
+                    android:textSize="12sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSendSOS"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="SOS  SEND RESCUE REQUEST"
+        android:background="@drawable/bg_btn_red"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvFalseAlarmInfo" />
+
+    <TextView
+        android:id="@+id/tvFalseAlarmInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="False reporting is a punishable offense."
+        android:textColor="#9CA3AF"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

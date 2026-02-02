@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796896053089",
+    "project_id": "floodrescue-23385",
+    "storage_bucket": "floodrescue-23385.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796896053089:android:52cf839ef5b7a08e20a720",
+        "android_client_info": {
+          "package_name": "com.example.floodrescue"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzsDfg5oW36bOk_9hIEc0J3MlBsMm-7k0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

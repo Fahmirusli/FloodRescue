@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="24dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="40dp">
+
+        <TextView
+            android:text="Edit Profile"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:layout_height="30dp"
+            android:layout_width="100dp"/>
+
+        <TextView
+            android:text="Full Name"
+            android:textColor="@color/text_secondary"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"/>
+        <EditText android:id="@+id/etEditName" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_input_field" android:textColor="@color/white" android:text="John Doe" android:paddingStart="10dp" android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:text="Phone"
+            android:textColor="@color/text_secondary"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"/>
+        <EditText android:id="@+id/etEditPhone" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_input_field" android:textColor="@color/white" android:text="+1 555-0123" android:paddingStart="10dp" android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:text="Email"
+            android:textColor="@color/text_secondary"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"/>
+        <EditText android:id="@+id/etEditEmail" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_input_field" android:textColor="@color/white" android:text="john.d@example.com" android:paddingStart="10dp" android:inputType="textEmailAddress" android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:text="Address"
+            android:textColor="@color/text_secondary"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"/>
+        <EditText android:id="@+id/etEditAddress" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_input_field" android:textColor="@color/white" android:text="124 Main St, NY" android:paddingStart="10dp" android:layout_marginBottom="16dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="30dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
+                <TextView
+                    android:text="Blood Type"
+                    android:textColor="@color/text_secondary"
+                    android:layout_height="match_parent"
+                    android:layout_width="100dp"/>
+                <EditText android:id="@+id/etEditBlood" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_input_field" android:textColor="@color/white" android:text="O+" android:gravity="center" android:paddingStart="0dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginStart="8dp">
+                <TextView
+                    android:text="Mobility"
+                    android:textColor="@color/text_secondary"
+                    android:layout_height="match_parent"
+                    android:layout_width="100dp"/>
+                <EditText android:id="@+id/etEditMobility" android:layout_width="match_parent" android:layout_height="50dp" android:background="@drawable/bg_input_field" android:textColor="@color/white" android:text="Full" android:gravity="center" android:paddingStart="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Save Changes"
+            android:background="@drawable/bg_btn_blue"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Cancel"
+            android:background="#00000000"
+            android:textColor="#EF4444"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bottom_sheet_full"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/btnCancelReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/primary_blue"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Incident"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSendReport"
+        app:layout_constraintTop_toBottomOf="@+id/btnCancelReport"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#374151"
+                android:layout_marginBottom="16dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@android:drawable/ic_dialog_map"
+                    android:scaleType="centerCrop"
+                    app:tint="#6B7280"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accuracy: ±5m"
+                    android:textColor="@color/white"
+                    android:background="#99000000"
+                    android:padding="8dp"
+                    android:textSize="12sp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="10dp"/>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dark_card"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_mylocation" app:tint="@color/primary_blue"/>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="16dp">
+                    <TextView
+                        android:id="@+id/tvReportAddress"
+                        android:text="Fetching location..."
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:layout_width="190dp"/>
+                    <TextView
+                        android:id="@+id/tvReportLatLng"
+                        android:text="Lat: --, Long: --"
+                        android:textColor="#9CA3AF"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="190dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:text="Select Category"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/spinnerReportCategory"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_dark_card"
+                android:padding="8dp"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:text="Details"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_dark_card"
+                android:hint="Describe the situation (e.g., water level, trapped people)..."
+                android:textColorHint="#6B7280"
+                android:textColor="@color/white"
+                android:gravity="top"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:text="Evidence"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/btnUploadEvidence"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_dashed_border"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:id="@+id/layoutPlaceholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:src="@android:drawable/ic_menu_camera" app:tint="#6B7280"/>
+                    <TextView
+                        android:text="Add Photo or Video"
+                        android:textColor="#6B7280"
+                        android:layout_marginStart="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imgPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:scaleType="centerCrop"
+                    android:padding="2dp"/>
+
+                <ImageView
+                    android:id="@+id/btnRemoveImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="#EF4444"
+                    android:background="@android:drawable/presence_online"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="8dp"
+                    android:visibility="gone"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSendReport"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Send Report"
+        android:background="@drawable/bg_btn_blue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:drawableStart="@android:drawable/ic_menu_send"
+        android:drawableTint="@color/white"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvOfflineInfo" />
+
+    <TextView
+        android:id="@+id/tvOfflineInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reports will be saved locally if offline."
+        android:textColor="#6B7280"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
