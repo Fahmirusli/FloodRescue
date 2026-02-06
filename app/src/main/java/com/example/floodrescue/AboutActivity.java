@@ -13,9 +13,14 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        // Back button
+        findViewById(R.id.btnBackAbout).setOnClickListener(v -> {
+            finish();
+        });
+
         // Clickable URL logic for project submission
         findViewById(R.id.btnGithub).setOnClickListener(v -> {
-            String url = "https://github.com/Fahmirusli/FloodRescue.git";
+            String url = "https://github.com/Fahmirusli/FloodRescue";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
         });

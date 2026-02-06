@@ -194,6 +194,7 @@ public class ReportIncidentBottomSheet extends BottomSheetDialogFragment {
             report.put("userId", mAuth.getCurrentUser().getUid());
             report.put("userName", mAuth.getCurrentUser().getDisplayName());
         } else {
+            // For anonymous reports, we'll still save them, but without a userId
             report.put("userName", "Anonymous");
         }
 

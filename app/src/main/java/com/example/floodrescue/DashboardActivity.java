@@ -98,9 +98,6 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
 
         findViewById(R.id.btnCalendar).setOnClickListener(v -> showHourlyForecast());
 
-        findViewById(R.id.btnNotification).setOnClickListener(v ->
-                Toast.makeText(this, "Notifications coming soon!", Toast.LENGTH_SHORT).show());
-
         findViewById(R.id.imgAvatarDashboard).setOnClickListener(v ->
                 startActivity(new Intent(this, ProfileActivity.class)));
 
@@ -354,7 +351,10 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
             db.collection("users").document(mAuth.getCurrentUser().getUid()).get().addOnSuccessListener(d -> {
                 if (d.exists()) {
                     TextView tv = findViewById(R.id.tvUserName);
-                    if (tv != null) tv.setText(d.getString("fullName"));
+                    String fullName = d.getString("fullName");
+                    if (tv != null && fullName != null && !fullName.isEmpty()) {
+                        tv.setText(fullName);
+                    }
                 }
             });
         }

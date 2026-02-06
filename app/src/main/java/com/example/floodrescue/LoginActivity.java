@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -21,8 +18,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // 2. Configure Google Sign In
-        // REPLACE THE STRING BELOW WITH YOUR COPIED "WEB CLIENT ID"
         String webClientId = "796896053089-6bae0iijq0nt4pq7lla8d8to5k4bqj3c.apps.googleusercontent.com";
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -57,31 +54,29 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setupButtons() {
         // GOOGLE LOGIN BUTTON
-        findViewById(R.id.btnGoogleLogin).setOnClickListener(v -> {
-            signInWithGoogle();
-        });
+        findViewById(R.id.btnGoogleLogin).setOnClickListener(v -> signInWithGoogle());
 
-        // REGULAR EMAIL LOGIN (Placeholder for now)
+        // REGULAR EMAIL LOGIN
         findViewById(R.id.btnLogin).setOnClickListener(v -> {
             EditText etEmail = findViewById(R.id.etEmail);
             EditText etPass = findViewById(R.id.etPassword);
-            if(etEmail.getText().toString().isEmpty() || etPass.getText().toString().isEmpty()){
+            String email = etEmail.getText().toString();
+            String password = etPass.getText().toString();
+
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // We will add Email Login logic later if you want
-            Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
+            signInWithEmail(email, password);
         });
 
         // FORGOT PASSWORD
-        findViewById(R.id.tvForgotPassword).setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-        });
+        findViewById(R.id.tvForgotPassword).setOnClickListener(v ->
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class)));
 
         // SIGN UP LINK
-        findViewById(R.id.tvSignUpLink).setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-        });
+        findViewById(R.id.tvSignUpLink).setOnClickListener(v ->
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
 
         // EMERGENCY REPORT BUTTON
         View btnEmergency = findViewById(R.id.btnEmergency);
@@ -92,6 +87,23 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
+    // --- EMAIL SIGN IN LOGIC ---
+    private void signInWithEmail(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
     // --- GOOGLE SIGN IN LOGIC ---
 
@@ -135,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
     // --- NEW HELPER METHOD: SYNC USER TO FIRESTORE ---
     private void syncUserToDatabase(FirebaseUser user) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        if (user == null) return;
         String uid = user.getUid();
 
         // Check if this user already exists in our database
@@ -182,9 +195,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            // Uncomment this line if you want Auto-Login (Skip login screen if already logged in)
-            // updateUI(currentUser);
-        }
+        // Uncomment this line if you want Auto-Login (Skip login screen if already logged in)
+        // if(currentUser != null){
+        //    updateUI(currentUser);
+        // }
     }
 }

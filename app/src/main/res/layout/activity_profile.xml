@@ -100,7 +100,7 @@
                         android:layout_height="15dp"
                         android:layout_width="80dp"/>
                     <TextView
-                        android:text="+1 555-0123"
+                        android:id="@+id/tvProfilePhone"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:layout_height="20dp"
@@ -121,7 +121,7 @@
                         android:layout_height="15dp"
                         android:layout_width="80dp"/>
                     <TextView
-                        android:text="john.d@example.com"
+                        android:id="@+id/tvProfileEmailDisplay"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:layout_height="20dp"
@@ -140,7 +140,7 @@
                         android:layout_height="15dp"
                         android:layout_width="80dp"/>
                     <TextView
-                        android:text="124 Main St, New York, NY"
+                        android:id="@+id/tvProfileAddress"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:layout_height="20dp"
@@ -171,7 +171,7 @@
                     android:layout_height="15dp"
                     android:layout_width="142dp"/>
                 <TextView
-                    android:text="O+"
+                    android:id="@+id/tvProfileBlood"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -179,7 +179,7 @@
                     android:layout_width="90dp"/>
             </LinearLayout>
             <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/bg_dark_card" android:padding="16dp" android:orientation="vertical" android:layout_marginStart="8dp">
-                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_myplaces"
+                <ImageView android:layout_width="24dp" android:layout_height="24.dp" android:src="@android:drawable/ic_menu_myplaces"
                     app:tint="#10B981" />
                 <TextView
                     android:text="MOBILITY"
@@ -189,7 +189,7 @@
                     android:layout_height="15dp"
                     android:layout_width="140dp"/>
                 <TextView
-                    android:text="Full"
+                    android:id="@+id/tvProfileMobility"
                     android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -275,16 +275,17 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAbout"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="My Reports History"
+            android:text="About"
             android:textAlignment="viewStart"
             android:paddingStart="20dp"
             android:background="@drawable/bg_dark_card"
             android:textColor="@color/white"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="12dp"
             android:textAllCaps="false"
-            android:drawableEnd="@android:drawable/ic_media_play"
+            android:drawableEnd="@android:drawable/ic_menu_info_details"
             android:drawableTint="#6B7280"
             android:paddingEnd="20dp"/>
 

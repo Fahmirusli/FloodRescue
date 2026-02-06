@@ -2,10 +2,8 @@ package com.example.floodrescue;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -25,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView pendingAvatarView = null;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private LinearLayout contactsContainer;
 
     // 1. IMAGE PICKER REGISTRY
     private final ActivityResultLauncher<String> pickContactImage = registerForActivityResult(
@@ -40,6 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        
+        contactsContainer = findViewById(R.id.containerEmergencyContacts);
+
 
         // 1. Initialize Firebase
         db = FirebaseFirestore.getInstance();
@@ -47,6 +48,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         // 2. Setup standard buttons (Back, Edit, Logout)
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        
+        findViewById(R.id.btnAddEmergencyContact).setOnClickListener(v -> {
+            showContactDialog(contactsContainer, null, null, null, null);
+        });
 
         findViewById(R.id.btnEditProfile).setOnClickListener(v -> {
             // When going to Edit, we can reload when we come back
@@ -61,6 +66,10 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        findViewById(R.id.btnAbout).setOnClickListener(v -> {
+            startActivity(new Intent(this, AboutActivity.class));
+        });~
+
         // 3. LOAD REAL USER DATA
         loadUserProfile();
 
@@ -71,12 +80,20 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             // A. Update Simple Info from Login (Name & Email)
-            TextView tvName = findViewById(R.id.tvProfileName); // Make sure you have this ID in XML
-            TextView tvEmail = findViewById(R.id.tvProfileEmail); // Make sure you have this ID in XML
+            TextView tvName = findViewById(R.id.tvProfileName);
+            TextView tvEmail = findViewById(R.id.tvProfileEmail);
+            TextView tvProfilePhone = findViewById(R.id.tvProfilePhone);
+            TextView tvProfileEmailDisplay = findViewById(R.id.tvProfileEmailDisplay);
+            TextView tvProfileAddress = findViewById(R.id.tvProfileAddress);
+            TextView tvProfileBlood = findViewById(R.id.tvProfileBlood);
+            TextView tvProfileMobility = findViewById(R.id.tvProfileMobility);
+
 
             // Set defaults from Google Login
             tvName.setText(user.getDisplayName());
             tvEmail.setText(user.getEmail());
+            tvProfileEmailDisplay.setText(user.getEmail());
+
 
             // B. Fetch Extra Info (Phone, Blood Type, etc.) from Database
             db.collection("users").document(user.getUid()).get()
@@ -85,12 +102,15 @@ public class ProfileActivity extends AppCompatActivity {
                             // If we have saved specific data, override the display
                             String dbName = document.getString("fullName");
                             String phone = document.getString("phone");
+                            String address = document.getString("address");
+                            String blood = document.getString("bloodType");
+                            String mobility = document.getString("mobility");
 
                             if (dbName != null) tvName.setText(dbName);
-
-                            // Example: If you had a TextView for phone, you would set it here
-                            // TextView tvPhone = findViewById(R.id.tvProfilePhone);
-                            // tvPhone.setText(phone);
+                            if (phone != null) tvProfilePhone.setText(phone);
+                            if (address != null) tvProfileAddress.setText(address);
+                            if (blood != null) tvProfileBlood.setText(blood);
+                            if (mobility != null) tvProfileMobility.setText(mobility);
                         }
                     });
         }
