@@ -37,10 +37,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -84,8 +88,12 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
             sosSheet.show(getSupportFragmentManager(), "EmergencySheet");
         });
 
-        findViewById(R.id.btnZoomIn).setOnClickListener(v -> { if (mMap != null) mMap.animateCamera(CameraUpdateFactory.zoomIn()); });
-        findViewById(R.id.btnZoomOut).setOnClickListener(v -> { if (mMap != null) mMap.animateCamera(CameraUpdateFactory.zoomOut()); });
+        findViewById(R.id.btnZoomIn).setOnClickListener(v -> {
+            if (mMap != null) mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        });
+        findViewById(R.id.btnZoomOut).setOnClickListener(v -> {
+            if (mMap != null) mMap.animateCamera(CameraUpdateFactory.zoomOut());
+        });
         findViewById(R.id.btnMyLocation).setOnClickListener(v -> getUserLocation());
 
         findViewById(R.id.btnCalendar).setOnClickListener(v -> showHourlyForecast());
@@ -131,10 +139,23 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
                         Double lat = document.getDouble("latitude");
                         Double lng = document.getDouble("longitude");
                         String desc = document.getString("description");
+                        String userName = document.getString("userName");
+                        Long timestamp = document.getLong("timestamp");
 
                         // CRITICAL NULL CHECK: Only add marker if both coordinates exist
                         if (lat != null && lng != null) {
                             LatLng pos = new LatLng(lat, lng);
+
+                            // Format the timestamp
+                            String formattedDate = "";
+                            if (timestamp != null) {
+                                SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
+                                formattedDate = sdf.format(new Date(timestamp));
+                            }
+
+                            // Create the detailed snippet
+                            String snippet = desc + "\n\nReported by: " + (userName != null ? userName : "Anonymous") +
+                                    "\nOn: " + formattedDate;
 
                             // Choose marker color based on type
                             float hue = BitmapDescriptorFactory.HUE_RED;
@@ -144,7 +165,7 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
                             mMap.addMarker(new MarkerOptions()
                                     .position(pos)
                                     .title(type)
-                                    .snippet(desc)
+                                    .snippet(snippet) // Use the new detailed snippet
                                     .icon(BitmapDescriptorFactory.defaultMarker(hue)));
                         }
                     }
@@ -176,14 +197,16 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
                 String line;
                 while ((line = reader.readLine()) != null) sb.append(line);
                 response = sb.toString();
-            } catch (Exception e) { e.printStackTrace(); }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             final String res = response;
             handler.post(() -> {
                 try {
                     if (res == null || res.isEmpty()) return;
                     JSONObject json = new JSONObject(res);
-                    
+
                     // Current weather
                     JSONObject current = json.getJSONObject("current");
                     double temp = current.getDouble("temperature_2m");
@@ -205,7 +228,9 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
                     if (tvCondition != null) tvCondition.setText(decodeWeatherCode(code));
                     if (tvHumidity != null) tvHumidity.setText("Humidity: " + humidity + "%");
 
-                } catch (Exception e) { e.printStackTrace(); }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
         });
     }
@@ -254,7 +279,9 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
 
                 container.addView(row);
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private String decodeWeatherCode(int c) {
@@ -272,13 +299,15 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void enableUserLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) return;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            return;
         mMap.setMyLocationEnabled(true);
         getUserLocation();
     }
 
     private void getUserLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) return;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            return;
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15f));
@@ -291,7 +320,7 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
     private void checkSafeZoneStatus(double lat, double lon) {
         TextView tv = findViewById(R.id.tvWeatherStatus);
         if (tv == null) return;
-        
+
         db.collection("reports")
                 .whereEqualTo("type", "Flood")
                 .get()
@@ -303,13 +332,13 @@ public class DashboardActivity extends AppCompatActivity implements OnMapReadyCa
                         if (reportLat != null && reportLng != null) {
                             float[] results = new float[1];
                             Location.distanceBetween(lat, lon, reportLat, reportLng, results);
-                            if (results[0] < 5000) {
+                            if (results[0] < 5000) { // 5km radius
                                 dangerFound = true;
                                 break;
                             }
                         }
                     }
-                    
+
                     if (dangerFound) {
                         tv.setText("DANGER: FLOOD NEARBY");
                         tv.setTextColor(Color.RED);
